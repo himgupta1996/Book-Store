@@ -45,10 +45,10 @@ def buy():
 @app.route('/search',methods=['GET'])
 def search():
     if 'topic' in request.args:
-        topic='topic'
+        topic=request.args['topic']
     else:
         return "Error: No topic field provided. Please specify a topic."
-    results=requests.get("http://localhost:8002/query_by_topic/"+id)
+    results=requests.get("http://localhost:8002/query_by_topic/"+topic)
     return results['response']
 
 
@@ -56,14 +56,8 @@ def search():
 @app.route('/lookup',methods=['GET'])
 def lookup():
     if 'id' in request.args:
-        id='id'
+        id=request.args['id']
     else:
         return "Error: No id field provided. Please specify an id."
     results=requests.get("http://localhost:8002/query_by_id/"+id)
     return results['response']
-
-
-
-if __name__ == '__main__':
-    # debug mode
-    app.run(host='0.0.0.0', debug=True, port=6060)

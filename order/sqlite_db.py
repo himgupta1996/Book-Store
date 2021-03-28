@@ -9,7 +9,7 @@ class order:
 	def __init__(self):
 		try:
 			self.connection = sqlite3.connect("order_server.db")
-		except Error as e:
+		except Exception as e:
 			print("Error in connecting to email_server.db. Error: %s" % (str(e)))
 		# self.connection.row_factory = sqlite3.Row
 		self.connection.row_factory = dict_factory

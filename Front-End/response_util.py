@@ -21,7 +21,7 @@ def get_failed_response(status_code = 500,  message=None):
 def get_success_response(type_str, output, status_code = 200):
     succ_resp = {}
     succ_resp["status"] = "Success"
-    succ_resp["validation_code"] = status
+    succ_resp["validation_code"] = status_code
     succ_resp["message"] = {}
     succ_resp[type_str] = output
     return succ_resp

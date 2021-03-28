@@ -2,6 +2,7 @@ from flask import Flask,request
 import sqlite3
 from pydantic import BaseModel
 from response_util import get_failed_response,get_success_response
+import json
 
 app = Flask(__name__)
 
@@ -85,16 +86,19 @@ def update_by_id(id_):
         response = cur.fetchone()
         book = Book(id_ = response['id'],title = response['title'],count = response['count'],cost = response['cost'],topic = response['topic'])
         
-        if request.json.get('cost') != None:
-            book.cost = request.json.get('cost')
-        if request.json.get('count') != None:
-            book.cost += request.json.get('count')
+        data = json.loads(request.data)
+        if data.get('cost') != None:
+            book.cost = data.get('cost')
+        if data.get('count') != None:
+            book.count += data.get('count')
+        
         
         sql_query ="REPLACE INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?)"
         values = (book.id_,book.title,book.count,book.cost,book.topic);
-        cur.execute(sql_query,values)    
+        cur.execute(sql_query,values)   
         con.commit()
         con.close()
+        raise
         return get_success_response('item',book.dict())
     
     except Exception as e:

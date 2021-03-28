@@ -4,8 +4,11 @@ from config import Config
 from response_util import get_failed_response, get_success_response
 import requests
 from datetime import datetime
+import sys
+sys.path.insert(1, '../')
+from const import CATALOG_SERVER
 
-catalog_url = Config.catalog_server['ip'] + ":" + Config.catalog_server['port']
+catalog_url = CATALOG_SERVER['IP'] + ":" + str(CATALOG_SERVER['PORT'])
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -22,7 +25,6 @@ def index():
 def orders():
 	order_db = order()
 	orders = order_db.get_orders()
-	print(orders)
 	return get_success_response('order', orders)
 
 @app.route('/buy/<item_id>', methods = ['GET'])
@@ -38,19 +40,16 @@ def buy(item_id = None):
         item = r.json()['item']
         if item:
             item_count = r.json()['item'][0]['count']
-            print(item_count)
-            print("TRhe item count is %s" % (item_count))
             
         else:
             return get_failed_response(status_code = 404, message =  "Item with id %s not found in the catalog server." % (item_id))
     else:
-        get_failed_response(message = "Couldn't fetch item status from the catalog server.")
+        return get_failed_response(message = "Couldn't fetch item status from the catalog server.")
 
 	#If present issue a update request to the catalog server
     if item_count>0:
         payload = {"count" : -1}
         r = requests.put(catalog_url+"/item/%s"%(item_id), data = json.dumps(payload))
-        print(r.json())
         order_id = order_db.add_order({'item_id': item_id, 'created':  str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))})
         return get_success_response("order", output = {'id': order_id}, message = "Item with id %s bought successfully." % (item_id))
     else:

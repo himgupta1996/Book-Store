@@ -3,6 +3,9 @@ import requests
 from flask import request
 from flask import jsonify
 from response_util import get_failed_response,get_success_response 
+import sys
+sys.path.insert(1, '../')
+from const import CATALOG_SERVER, ORDER_SERVER
 
 app = Flask(__name__)
 
@@ -10,14 +13,14 @@ app = Flask(__name__)
 def hello_world():
     return "Welcome to Book Store!"
 
-@app.route('/buy', methods=['POST'])
+@app.route('/buy', methods=['GET'])
 def buy():
     try:
         data = request.args
         id=data["id"]
-        results=requests.get("http://localhost:8012/buy/"+id)
+        results=requests.get("%s:%s/buy/%s"%(ORDER_SERVER["IP"],ORDER_SERVER["PORT"],id))
         results=results.json()
-        return get_success_response('item',results)
+        return results
     except Exception as e:
         get_failed_response(message=str(e))
 
@@ -30,9 +33,9 @@ def search():
             topic=request.args['topic']
         else:
             return "Error: No topic field provided. Please specify a topic."
-        results=requests.get("http://localhost:8010/item?topic="+topic)
+        results=requests.get("%s:%s/item?topic=%s"%(CATALOG_SERVER["IP"],CATALOG_SERVER["PORT"],topic))
         results=results.json()
-        return get_success_response('item',results)
+        return results
     except Exception as e:
         get_failed_response(message=str(e))
 
@@ -45,9 +48,9 @@ def lookup():
             id=request.args['id']
         else:
             return "Error: No id field provided. Please specify an id."
-        results=requests.get("http://localhost:8010/item/"+id)
+        results=requests.get("%s:%s/item/%s"%(CATALOG_SERVER["IP"],CATALOG_SERVER["PORT"],id))
         results=results.json()
-        return get_success_response('item',results)
+        return results
         
     except Exception as e:
         get_failed_response(message=str(e))

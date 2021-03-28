@@ -3,6 +3,16 @@ import requests
 from flask import request
 from flask import jsonify
 from response_util import get_failed_response,get_success_response 
+import sys,os
+sys.path.append('..')
+import const 
+
+order_ip=const.ORDER_SERVER['IP']
+order_port=const.ORDER_SERVER['PORT']
+
+catalog_ip=const.CATALOG_SERVER['IP']
+catalog_port=const.CATALOG_SERVER['PORT']
+
 
 app = Flask(__name__)
 
@@ -15,7 +25,7 @@ def buy():
     try:
         data = request.args
         id=data["id"]
-        results=requests.get("http://localhost:8012/buy/"+id)
+        results=requests.get(order_ip+":"+str(order_port)+"/buy/"+id)
         results=results.json()
         return get_success_response('item',results)
     except Exception as e:
@@ -30,7 +40,7 @@ def search():
             topic=request.args['topic']
         else:
             return "Error: No topic field provided. Please specify a topic."
-        results=requests.get("http://localhost:8010/item?topic="+topic)
+        results=requests.get(catalog_ip+":"+str(catalog_port)+"/item?topic="+topic)
         results=results.json()
         return get_success_response('item',results)
     except Exception as e:
@@ -45,7 +55,7 @@ def lookup():
             id=request.args['id']
         else:
             return "Error: No id field provided. Please specify an id."
-        results=requests.get("http://localhost:8010/item/"+id)
+        results=requests.get(catalog_ip+":"+str(catalog_port)+"/item/"+id)
         results=results.json()
         return get_success_response('item',results)
         

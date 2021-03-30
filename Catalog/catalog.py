@@ -6,9 +6,10 @@ import json
 import logging
 
 logging.basicConfig(filename="catalog.log",level=logging.DEBUG,
-					format='%(asctime)s %(message)s',
-					filemode='w')
-logger=logging.getLogger()
+					format='%(asctime)s %(message)s')
+# logger=logging.getLogger()
+log = logging.getLogger('werkzeug')
+log.disabled = True
 
 app = Flask(__name__)
 

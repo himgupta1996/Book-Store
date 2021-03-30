@@ -22,8 +22,7 @@ def buy():
         results=results.json()
         return results
     except Exception as e:
-        get_failed_response(message=str(e))
-
+        return get_failed_response(message=str(e))
 
 #query_by_topic
 @app.route('/search',methods=['GET'])
@@ -37,8 +36,7 @@ def search():
         results=results.json()
         return results
     except Exception as e:
-        get_failed_response(message=str(e))
-
+        return get_failed_response(message=str(e))
 
 #query_by_id
 @app.route('/lookup',methods=['GET'])
@@ -53,4 +51,4 @@ def lookup():
         return results
         
     except Exception as e:
-        get_failed_response(message=str(e))
+        return get_failed_response(message=str(e))

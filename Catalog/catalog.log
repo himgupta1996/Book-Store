@@ -2,3 +2,33 @@
 2021-03-29 22:03:43,753 Looking up the all the items in the catalog database.
 2021-03-29 22:03:43,754 Lookup Successful
 2021-03-29 22:03:43,754 127.0.0.1 - - [29/Mar/2021 22:03:43] "[37mGET /item HTTP/1.1[0m" 200 -
+2021-03-29 23:08:29,419 Looking up the items with topic 'graduate school' in catalog database.
+2021-03-29 23:08:29,420 Lookup Successful
+2021-03-29 23:08:29,439 Looking up the item with id '4' in catalog database.
+2021-03-29 23:08:29,440 Lookup Successful
+2021-03-29 23:08:29,497 Looking up the item with id '4' in catalog database.
+2021-03-29 23:08:29,498 Lookup Successful
+2021-03-29 23:08:29,512 Looking up the item with id '4' in catalog database for updating the item.
+2021-03-29 23:08:29,525 Updating the count of the book with id = '4'
+2021-03-29 23:08:29,529 Catalog database update successful
+2021-03-29 23:08:31,614 Looking up the items with topic 'graduate school' in catalog database.
+2021-03-29 23:08:31,615 Lookup Successful
+2021-03-29 23:08:31,640 Looking up the item with id '4' in catalog database.
+2021-03-29 23:08:31,641 Lookup Successful
+2021-03-29 23:08:31,691 Looking up the item with id '4' in catalog database.
+2021-03-29 23:08:31,692 Lookup Successful
+2021-03-29 23:08:31,705 Looking up the item with id '4' in catalog database for updating the item.
+2021-03-29 23:08:31,707 Updating the count of the book with id = '4'
+2021-03-29 23:08:31,719 Catalog database update successful
+2021-03-29 23:08:33,787 Looking up the items with topic 'distributed systems' in catalog database.
+2021-03-29 23:08:33,787 Lookup Successful
+2021-03-29 23:08:33,798 Looking up the item with id '2' in catalog database.
+2021-03-29 23:08:33,799 Lookup Successful
+2021-03-29 23:08:35,820 Looking up the items with topic 'distributed systems' in catalog database.
+2021-03-29 23:08:35,821 Lookup Successful
+2021-03-29 23:08:35,829 Looking up the item with id '1' in catalog database.
+2021-03-29 23:08:35,830 Lookup Successful
+2021-03-29 23:08:37,843 Looking up the items with topic 'distributed systems' in catalog database.
+2021-03-29 23:08:37,844 Lookup Successful
+2021-03-29 23:08:37,850 Looking up the item with id '1' in catalog database.
+2021-03-29 23:08:37,851 Lookup Successful

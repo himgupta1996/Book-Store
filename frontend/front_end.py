@@ -7,7 +7,10 @@ import sys
 sys.path.insert(1, '../')
 from const import CATALOG_SERVER, ORDER_SERVER
 import logging
-logging.basicConfig(filename="frontend.log", level=logging.DEBUG, format='%(asctime)s %(message)s', filemode='w')
+logging.basicConfig(filename="frontend.log", level=logging.DEBUG, format='%(asctime)s %(message)s')
+log = logging.getLogger('werkzeug')
+log.disabled = True
+
 
 app = Flask(__name__)
 

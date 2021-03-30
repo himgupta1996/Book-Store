@@ -53,11 +53,11 @@ def catalog():
     return 'Hello, catalog!'
 
 '''
-item route is used for seach, lookup and update.
+item route is used for search, lookup and update.
 There are 4 cases which are overall covered here - 
 1. item route with an id_, method  = ['GET']
     Returns the item for the corresponding id
-2. item route with a topic parameter in the query paramets, method  = ['GET']
+2. item route with a topic parameter in the query parameters, method  = ['GET']
     Returns the items for the corresponding topic
 3. item route with no id and no payload, method  = ['GET']
     Returns the list of the items in the catalog database

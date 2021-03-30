@@ -21,4 +21,4 @@ Please find the instructions below for testing the implementation.
 # Instructions 
 
 1. Define the ports of order, catalog and front end server by editing the `const.py` file
-2. Run `python client.py -n <number of iterations>`. For example, if you want the service to run for 20 iterations (where each iteration contains one instance of search,lookup and buy method) you use `python client.py -n 20` OR `python client.py 20`
+2. Run `python client.py -n <number of iterations>`. For example, if you want the service to run for 20 iterations (where each iteration contains one instance of search,lookup and buy method) you use `python client.py -n 20` OR `python client.py 20`. Please note that the servers keep running even after the completion of all iterations.

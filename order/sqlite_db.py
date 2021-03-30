@@ -15,13 +15,6 @@ class order:
 		self.connection.row_factory = dict_factory
 		self.cursor = self.connection.cursor()
 		self.columns = ['id', 'item_id', 'created']
-		self.cursor.execute('''CREATE TABLE IF NOT EXISTS email(id INTEGER PRIMARY KEY NOT NULL, \
-												body TEXT, \
-												subject TEXT CHECK(length(subject) <= 50), \
-												sender TEXT NOT NULL, \
-												recipient TEXT NOT NULL, \
-												has_attachments TEXT, \
-												created date NOT NULL)''')
 		self.cursor.execute('''CREATE TABLE IF NOT EXISTS orders(id INTEGER PRIMARY KEY NOT NULL, item_id INTEGER NOT NULL, created date NOT NULL)''')
 
 	def get_orders(self):

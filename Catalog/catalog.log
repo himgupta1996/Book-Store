@@ -1,0 +1,4 @@
+2021-03-29 22:03:39,398  * Running on http://127.0.0.1:8010/ (Press CTRL+C to quit)
+2021-03-29 22:03:43,753 Looking up the all the items in the catalog database.
+2021-03-29 22:03:43,754 Lookup Successful
+2021-03-29 22:03:43,754 127.0.0.1 - - [29/Mar/2021 22:03:43] "[37mGET /item HTTP/1.1[0m" 200 -

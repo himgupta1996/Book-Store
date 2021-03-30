@@ -26,17 +26,11 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-@app.route('/')
-def catalog():
-    
-    '''
-    DB initialization code below
-    Uncomment to re-initialize the database
-    '''
-    '''
-    con = sqlite3.connect('catalog.db')
-    cur = con.cursor()
-    cur.execute("DROP TABLE catalog");
+con = sqlite3.connect('catalog.db')
+cur = con.cursor();
+cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='catalog';")
+response = cur.fetchone()
+if response == None:
     cur.execute("create table IF NOT EXISTS catalog (id INTEGER PRIMARY KEY,title text,count INTEGER, cost INTEGER, topic text)")
     sql_query ="INSERT INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?) "
     values_1 = (1, 'How to get a good grade in 677 in 20 minutes a day.', 5, 10, 'distributed systems');
@@ -47,8 +41,15 @@ def catalog():
     cur.execute(sql_query,values_2)
     cur.execute(sql_query,values_3)
     cur.execute(sql_query,values_4)
-    con.commit()
-    con.close()
+con.commit()
+con.close()
+
+@app.route('/')
+def catalog():
+    
+    '''
+    DB initialization code below
+    Uncomment to re-initialize the database
     '''
     
     return 'Hello, catalog!'

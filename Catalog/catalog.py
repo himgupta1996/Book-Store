@@ -3,6 +3,12 @@ import sqlite3
 from pydantic import BaseModel
 from response_util import get_failed_response,get_success_response
 import json
+import logging
+
+logging.basicConfig(filename="catalog.log",level=logging.DEBUG,
+					format='%(asctime)s %(message)s',
+					filemode='w')
+logger=logging.getLogger()
 
 app = Flask(__name__)
 
@@ -46,6 +52,23 @@ def catalog():
     
     return 'Hello, catalog!'
 
+'''
+item route is used for seach, lookup and update.
+There are 4 cases which are overall covered here - 
+1. item route with an id_, method  = ['GET']
+    Returns the item for the corresponding id
+2. item route with a topic parameter in the query paramets, method  = ['GET']
+    Returns the items for the corresponding topic
+3. item route with no id and no payload, method  = ['GET']
+    Returns the list of the items in the catalog database
+4. item route with an id_,update payload, method  = ['PUT']
+    Updates the item having id=id_ with the update data passed in payload.
+    The update data contains fields 'cost' and 'count' to update the cost 
+    and count of the entry with id=id_. Note that the cost update is direct 
+    whereas the count update is addtional in nature since the order server 
+    will pass the number of books which the frontend wants to buy.
+'''
+
 
 @app.route("/item/<id_>",methods = ['GET'])
 @app.route("/item",methods = ['GET'])
@@ -57,19 +80,24 @@ def item(id_ = None):
         sql_query = ""
         if id_ == None:
             if request.args.get('topic') != None:
+                app.logger.info("Looking up the items with topic '%s' in catalog database." % (request.args.get('topic')))
                 sql_query ="select * from catalog where topic = ?;"
                 values = (request.args.get('topic'),)
             else:
+                app.logger.info("Looking up the all the items in the catalog database.")
                 sql_query = "select * from catalog"
                 values = ()
         else:
+            app.logger.info("Looking up the item with id '%s' in catalog database." % (id_))
             sql_query ="select * from catalog where id = ?;"
             values = (id_,)
         cur.execute(sql_query,values)
         response = cur.fetchall()
+        if response != None:
+            app.logger.info("Lookup Successful")
         con.commit()
         con.close()
-        return get_success_response('item',response)
+        return get_success_response('item',response,status_code = 200)
     except Exception as e:
         get_failed_response(message=str(e))
     
@@ -82,24 +110,26 @@ def update_by_id(id_):
         cur = con.cursor()
         sql_query ="select * from catalog where id = ?;"
         select_values = (id_,)
+        app.logger.info("Looking up the item with id '%s' in catalog database for updating the item." % (id_))
         cur.execute(sql_query,select_values)
         response = cur.fetchone()
         book = Book(id_ = response['id'],title = response['title'],count = response['count'],cost = response['cost'],topic = response['topic'])
-        
         data = json.loads(request.data)
+        
         if data.get('cost') != None:
             book.cost = data.get('cost')
-        if data.get('count') != None:
+            app.logger.info("Updating the cost of the book with id = '%s'" % (id_))    
+        if data.get('count') != None and book.count > 0:
+            app.logger.info("Updating the count of the book with id = '%s'" % (id_))  
             book.count += data.get('count')
-        
         
         sql_query ="REPLACE INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?)"
         values = (book.id_,book.title,book.count,book.cost,book.topic);
         cur.execute(sql_query,values)   
+        app.logger.info('Catalog database update successful')  
         con.commit()
         con.close()
-        raise
-        return get_success_response('item',book.dict())
+        return get_success_response('item',book.dict(),status_code=201)
     
     except Exception as e:
         get_failed_response(message=str(e))

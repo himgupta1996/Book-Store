@@ -9,7 +9,7 @@ Kunal Chakrabarty (kchakrabarty@umass.edu) <br>
 Following are the source file descriptions
 
 # Source File Descriptions
-1. `Catalog/catalog.py` implements the catalog server with the item and update_by_id methods
+1. `Catalog/catalog.py` implements the catalog server with the item GET and PUT methods
 2. `frontend/front_end.py` implements the front end server with the buy, search and lookup methods
 3. `order/main.py` implements the order server with the buy method. 
 4. `requirements.txt` contains the python libraries required

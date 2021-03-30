@@ -12,9 +12,11 @@ Following are the source file descriptions
 1. `Catalog/catalog.py` implements the catalog server with the relevant GET and PUT methods.
 2. `frontend/front_end.py` implements the front end server with the buy, search and lookup methods.
 3. `order/main.py` implements the order server with the buy method. 
-4. `requirements.txt` contains the python libraries required
-5. `client.py` is a single script to automatically run tests
-6. `const.py` contains information about the IP and Node for all the servers
+4. `Docs` contains the design documentation and the test case documentation
+5. `requirements.txt` contains the python libraries required
+6. `client.py` is a single script to automatically run tests
+7. `const.py` contains information about the IP and Node for all the servers
+
 
 Please find the instructions below for testing the implementation.
 

@@ -25,3 +25,11 @@ Please find the instructions below for testing the implementation.
 1. Define the ports of order, catalog and front end server by editing the `const.py` file
 2. Run `python client.py -n <number of iterations>`. For example, if you want the service to run for 20 iterations (where each iteration contains one instance of search,lookup and buy method) you use `python client.py -n 20` OR `python client.py 20`. Default value is 5 iterations. Please note that the servers keep running even after the completion of all iterations.
 3. You can observe the results of this run in the log files. Client.log will contain the logs of all the servers. For server specific logs, you can refer to the logs inside the specific folder for a server.
+
+sudo yum install python3
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
+pip install flask
+pip install gunicorn
+gunicorn -b 0.0.0.0:8010 front_end:app
+pip install requests

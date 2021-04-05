@@ -20,6 +20,6 @@ def get_success_response(type_str, output, status_code = 200):
     succ_resp = {}
     succ_resp["status"] = "Success"
     succ_resp["validation_code"] = status_code
-    succ_resp["message"] = {}
+    succ_resp["message"] = ""
     succ_resp[type_str] = output
     return succ_resp, status_code

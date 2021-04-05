@@ -29,7 +29,7 @@ def buy():
         return results
     except Exception as e:
         app.logger.info("Failed to connect to order server. Error: %s" % (str(e)))
-        get_failed_response(message=str(e))
+        return get_failed_response(message=str(e))
 
 
 #the search method makes calls to the catalog server and searches for items based on topic name 
@@ -47,7 +47,7 @@ def search():
         return results
     except Exception as e:
         app.logger.info("Failed to connect to catalog server. Error: %s" % (str(e)))
-        get_failed_response(message=str(e))
+        return get_failed_response(message=str(e))
 
 
 # the lookup method makes calls to the catalog server and searches for the item corresponding to item id
@@ -66,4 +66,4 @@ def lookup():
         
     except Exception as e:
         app.logger.info("Failed to connect to catalog server. Error: %s" % (str(e)))
-        get_failed_response(message=str(e))
+        return get_failed_response(message=str(e))

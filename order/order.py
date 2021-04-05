@@ -8,7 +8,7 @@ import sys
 sys.path.insert(1, '../')
 from const import CATALOG_SERVER
 import logging
-logging.basicConfig(filename="order.log", level=logging.DEBUG, format='%(asctime)s %(message)s')
+logging.basicConfig(filename="order.log", level=logging.DEBUG, format='%(asctime)s %(message)s %(threadName)s')
 
 catalog_url = CATALOG_SERVER['IP'] + ":" + str(CATALOG_SERVER['PORT'])
 

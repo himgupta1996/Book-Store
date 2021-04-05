@@ -101,7 +101,7 @@ def item(id_ = None):
         con.close()
         return get_success_response('item',response,status_code = 200)
     except Exception as e:
-        get_failed_response(message=str(e))
+        return get_failed_response(message=str(e))
     
 
 @app.route("/item/<id_>",methods = ['PUT'])
@@ -115,23 +115,30 @@ def update_by_id(id_):
         app.logger.info("Looking up the item with id '%s' in catalog database for updating the item." % (id_))
         cur.execute(sql_query,select_values)
         response = cur.fetchone()
-        book = Book(id_ = response['id'],title = response['title'],count = response['count'],cost = response['cost'],topic = response['topic'])
         data = json.loads(request.data)
-        
-        if data.get('cost') != None:
-            book.cost = data.get('cost')
-            app.logger.info("Updating the cost of the book with id = '%s'" % (id_))    
-        if data.get('count') != None and book.count > 0:
-            app.logger.info("Updating the count of the book with id = '%s'" % (id_))  
-            book.count += data.get('count')
-        
-        sql_query ="REPLACE INTO catalog(id,title,count,cost,topic) VALUES(?,?,?,?,?)"
-        values = (book.id_,book.title,book.count,book.cost,book.topic);
-        cur.execute(sql_query,values)   
-        app.logger.info('Catalog database update successful')  
+
+        if 'count' in data:
+            logger.info("Updating the count of item %s" % (id_))
+            count = data['count']
+            if count < 0:
+                sign = "-"
+                count = count*(-1)
+                sql_query = "UPDATE catalog SET count = count %s %s where id = %s AND count > 0;" % (sign, count, id_)
+                cur.execute(sql_query) 
+            else:
+                sign = "+"
+                sql_query = "UPDATE catalog SET count = count %s %s where id = %s;" % (sign, count, id_)
+                cur.execute(sql_query) 
+
+        if 'cost' in data:
+            logger.info("Updating the cost of item %s" % (id_))
+            sql_query = "UPDATE catalog SET cost = %s where id = %s;"%(data['cost'], id_)
+            cur.execute(sql_query)
+           
         con.commit()
         con.close()
-        return get_success_response('item',book.dict(),status_code=201)
+        app.logger.info('Catalog database update successful')
+        return get_success_response('item',{}, status_code=201)
     
     except Exception as e:
-        get_failed_response(message=str(e))
+        return get_failed_response(message=str(e))

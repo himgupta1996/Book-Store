@@ -1,24 +1,65 @@
-2021-03-28 01:06:38,474 Waiting for the servers to deploy.
-2021-03-28 01:06:48,482 Searching catalog server for the topic 'distributed systems'
-2021-03-28 01:06:48,483 Starting new HTTP connection (1): 127.0.0.1:8010
-2021-03-28 01:06:48,502 http://127.0.0.1:8010 "GET /search?topic=distributed%20systems HTTP/1.1" 200 404
-2021-03-28 01:06:48,503 Search of topic 'distributed systems' successfull.
-2021-03-28 01:06:48,504 Looking up the item with id '2' in catalog server.
-2021-03-28 01:06:48,505 Starting new HTTP connection (1): 127.0.0.1:8010
-2021-03-28 01:06:48,512 http://127.0.0.1:8010 "GET /lookup?id=2 HTTP/1.1" 200 229
-2021-03-28 01:06:48,514 Lookup of item '2' successfull.
-2021-03-28 01:06:48,514 Buying the item with id '2' from order server.
-2021-03-28 01:06:48,515 Starting new HTTP connection (1): 127.0.0.1:8010
-2021-03-28 01:06:48,801 http://127.0.0.1:8010 "GET /buy?id=2 HTTP/1.1" 200 138
-2021-03-28 01:06:48,802 Succesfully bought the item '2'
-2021-03-28 01:06:48,803 ---------------------------------------------------------
-2021-03-28 01:06:48,803 Searching catalog server for the topic 'graduate school'
-2021-03-28 01:06:48,805 Starting new HTTP connection (1): 127.0.0.1:8010
-2021-03-28 01:06:48,826 http://127.0.0.1:8010 "GET /search?topic=graduate%20school HTTP/1.1" 200 418
-2021-03-28 01:06:48,827 Search of topic 'graduate school' successfull.
-2021-03-28 01:06:48,827 Looking up the item with id '4' in catalog server.
-2021-03-28 01:06:48,830 Starting new HTTP connection (1): 127.0.0.1:8010
-2021-03-28 01:06:48,850 http://127.0.0.1:8010 "GET /lookup?id=4 HTTP/1.1" 200 251
-2021-03-28 01:06:48,852 Lookup of item '4' successfull.
-2021-03-28 01:06:48,852 Item with id '4' not present in the server.
-2021-03-28 01:06:48,852 ---------------------------------------------------------
+2021-04-05 00:43:49,215 Searching catalog server for the topic 'graduate school'
+2021-04-05 00:43:49,227 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:49,291 http://3.86.205.22:8010 "GET /search?topic=graduate%20school HTTP/1.1" 200 285
+2021-04-05 00:43:49,291 Search of topic 'graduate school' successfull.
+2021-04-05 00:43:49,292 Looking up the item with id '3' in frontend server.
+2021-04-05 00:43:49,294 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:49,354 http://3.86.205.22:8010 "GET /lookup?id=3 HTTP/1.1" 200 176
+2021-04-05 00:43:49,355 Lookup of item '3' successfull.
+2021-04-05 00:43:49,355 Buying the item with id '3' from front server.
+2021-04-05 00:43:49,356 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:49,437 http://3.86.205.22:8010 "GET /buy?id=3 HTTP/1.1" 200 109
+2021-04-05 00:43:49,438 Succesfully bought the item '3'
+2021-04-05 00:43:49,438 ---------------------------------------------------------
+2021-04-05 00:43:51,445 Searching catalog server for the topic 'distributed systems'
+2021-04-05 00:43:51,446 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:51,504 http://3.86.205.22:8010 "GET /search?topic=distributed%20systems HTTP/1.1" 200 273
+2021-04-05 00:43:51,504 Search of topic 'distributed systems' successfull.
+2021-04-05 00:43:51,505 Looking up the item with id '2' in frontend server.
+2021-04-05 00:43:51,507 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:51,567 http://3.86.205.22:8010 "GET /lookup?id=2 HTTP/1.1" 200 152
+2021-04-05 00:43:51,568 Lookup of item '2' successfull.
+2021-04-05 00:43:51,568 Buying the item with id '2' from front server.
+2021-04-05 00:43:51,570 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:51,673 http://3.86.205.22:8010 "GET /buy?id=2 HTTP/1.1" 200 109
+2021-04-05 00:43:51,674 Succesfully bought the item '2'
+2021-04-05 00:43:51,674 ---------------------------------------------------------
+2021-04-05 00:43:53,680 Searching catalog server for the topic 'distributed systems'
+2021-04-05 00:43:53,681 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:53,742 http://3.86.205.22:8010 "GET /search?topic=distributed%20systems HTTP/1.1" 200 273
+2021-04-05 00:43:53,743 Search of topic 'distributed systems' successfull.
+2021-04-05 00:43:53,743 Looking up the item with id '1' in frontend server.
+2021-04-05 00:43:53,745 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:53,814 http://3.86.205.22:8010 "GET /lookup?id=1 HTTP/1.1" 200 186
+2021-04-05 00:43:53,815 Lookup of item '1' successfull.
+2021-04-05 00:43:53,815 Buying the item with id '1' from front server.
+2021-04-05 00:43:53,816 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:53,891 http://3.86.205.22:8010 "GET /buy?id=1 HTTP/1.1" 200 109
+2021-04-05 00:43:53,891 Succesfully bought the item '1'
+2021-04-05 00:43:53,892 ---------------------------------------------------------
+2021-04-05 00:43:55,901 Searching catalog server for the topic 'graduate school'
+2021-04-05 00:43:55,903 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:55,963 http://3.86.205.22:8010 "GET /search?topic=graduate%20school HTTP/1.1" 200 285
+2021-04-05 00:43:55,964 Search of topic 'graduate school' successfull.
+2021-04-05 00:43:55,964 Looking up the item with id '4' in frontend server.
+2021-04-05 00:43:55,966 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:56,027 http://3.86.205.22:8010 "GET /lookup?id=4 HTTP/1.1" 200 174
+2021-04-05 00:43:56,029 Lookup of item '4' successfull.
+2021-04-05 00:43:56,029 Buying the item with id '4' from front server.
+2021-04-05 00:43:56,030 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:56,113 http://3.86.205.22:8010 "GET /buy?id=4 HTTP/1.1" 200 109
+2021-04-05 00:43:56,114 Succesfully bought the item '4'
+2021-04-05 00:43:56,114 ---------------------------------------------------------
+2021-04-05 00:43:58,121 Searching catalog server for the topic 'graduate school'
+2021-04-05 00:43:58,123 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:58,185 http://3.86.205.22:8010 "GET /search?topic=graduate%20school HTTP/1.1" 200 285
+2021-04-05 00:43:58,186 Search of topic 'graduate school' successfull.
+2021-04-05 00:43:58,186 Looking up the item with id '3' in frontend server.
+2021-04-05 00:43:58,187 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:58,250 http://3.86.205.22:8010 "GET /lookup?id=3 HTTP/1.1" 200 176
+2021-04-05 00:43:58,251 Lookup of item '3' successfull.
+2021-04-05 00:43:58,251 Buying the item with id '3' from front server.
+2021-04-05 00:43:58,252 Starting new HTTP connection (1): 3.86.205.22:8010
+2021-04-05 00:43:58,337 http://3.86.205.22:8010 "GET /buy?id=3 HTTP/1.1" 200 109
+2021-04-05 00:43:58,338 Succesfully bought the item '3'
+2021-04-05 00:43:58,338 ---------------------------------------------------------

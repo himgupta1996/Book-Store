@@ -50,5 +50,5 @@ curl -O https://bootstrap.pypa.io/get-pip.py
 python3 get-pip.py --user  
 pip install flask  
 pip install gunicorn  
-gunicorn -b 0.0.0.0:8010 frontend:app   (for front end server. can be done similarly for other servers.)
+gunicorn -b 0.0.0.0:8010 frontend:app  
 pip install requests  

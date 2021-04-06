@@ -118,7 +118,7 @@ def update_by_id(id_):
         data = json.loads(request.data)
 
         if 'count' in data:
-            logger.info("Updating the count of item %s" % (id_))
+            app.logger.info("Updating the count of item %s" % (id_))
             count = data['count']
             if count < 0:
                 sign = "-"
@@ -131,7 +131,7 @@ def update_by_id(id_):
                 cur.execute(sql_query) 
 
         if 'cost' in data:
-            logger.info("Updating the cost of item %s" % (id_))
+            app.logger.info("Updating the cost of item %s" % (id_))
             sql_query = "UPDATE catalog SET cost = %s where id = %s;"%(data['cost'], id_)
             cur.execute(sql_query)
            

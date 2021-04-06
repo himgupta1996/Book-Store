@@ -34,7 +34,7 @@ Please find the instructions below for testing the implementation.
 
 ### To run servers remotely 
 
-1. Use the custom public AMI: `ami-07f5352ed5fd844e3` to deploy instances. The image contains all the library and source code for the respective flask servers to run. If you want to use another image, you have to follow the commands written in the `remote setup` section.
+1. Use the custom public AMI: `ami-07f5352ed5fd844e3` to deploy instances. The image contains all the library and source code for the respective flask servers to run. If you want to use another image, you have to follow the commands written in the `Remote Linux setup Commands` section.
 2. Create EC2 instances with key pair value, and get the private .pem file.
 3. Edit the security group to ensure that the ports required by the peers to communicate are open.
 3. Set up password-less ssh from the local machine to the ec2 servers by running the following command from the local terminal:
@@ -43,12 +43,14 @@ Please find the instructions below for testing the implementation.
 5. Now, on your local machine, run the `runme.py` file which will ssh on the remote machine and start the flask servers. It will then trigger frontend APIs to test the functionalities. USAGE: `python runme.py -pem <pem file used to ssh to all the machines> -n <number of iterations>`. The argument -pem is compulsory in the case the servers are running in remote environment/machines.
 6. You can observe the results of this run in different log files. `client.log` will contain the logs of `runme.py` script. For server specific logs, you can refer to the logs inside the specific server folders in remote machines. The location for the same will be: `/home/ec2-user/src/<servername>/<servername>.log`
 
-# Remote setup
+# Remote Linux setup Commands
 
 sudo yum install python3  
 curl -O https://bootstrap.pypa.io/get-pip.py  
 python3 get-pip.py --user  
 pip install flask  
-pip install gunicorn  
-gunicorn -b 0.0.0.0:8010 frontend:app  
+pip install gunicorn 
 pip install requests  
+
+Command to run the servers:  
+cd src/<server_name> && gunicorn -b 0.0.0.0:8010 <server_name>:app    

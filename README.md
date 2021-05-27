@@ -1,4 +1,4 @@
-# Book-Store
+# Pygmy.com
 
 This repository contains implementation of the Lab 2 Project of COMPSCI 677 course at UMass Amherst. <br>
 Contributors - <br>
